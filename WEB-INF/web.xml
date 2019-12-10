@@ -1,0 +1,228 @@
+<web-app>
+	<servlet>
+		<servlet-name>AjaxServlet</servlet-name>
+		<servlet-class>AjaxServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>AjaxServlet</servlet-name>
+		<url-pattern>/AjaxServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>dayservlet</servlet-name>
+		<servlet-class>DayServlet</servlet-class>
+	</servlet>
+
+
+	<servlet-mapping>
+		<servlet-name>dayservlet</servlet-name>
+		<url-pattern>/dayservlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>movietop</servlet-name>
+		<jsp-file>/movieTop.jsp</jsp-file>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>movietop</servlet-name>
+		<url-pattern>/movietop</url-pattern>
+	</servlet-mapping>
+
+
+
+
+<!--管理ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー-->
+	<!--映画館-->
+
+
+
+		<servlet>
+			<servlet-name>TheaterAddServlet</servlet-name>
+			<servlet-class>kanri.TheaterAddServlet</servlet-class>
+		</servlet>
+		
+		<servlet-mapping>
+			<servlet-name>TheaterAddServlet</servlet-name>
+			<url-pattern>/theateraddservlet</url-pattern>
+		</servlet-mapping>
+		
+		
+		
+
+
+		<servlet>
+			<servlet-name>TheaterChangeServlet</servlet-name>
+			<servlet-class>kanri.TheaterChangeServlet</servlet-class>
+		</servlet>
+		
+		<servlet-mapping>
+			<servlet-name>TheaterChangeServlet</servlet-name>
+			<url-pattern>/theaterchangeservlet</url-pattern>
+		</servlet-mapping>
+
+		<servlet>
+			<servlet-name>TheaterBeforeChangeServlet</servlet-name>
+			<servlet-class>kanri.TheaterBeforeChangeServlet</servlet-class>
+		</servlet>
+		
+		<servlet-mapping>
+			<servlet-name>TheaterBeforeChangeServlet</servlet-name>
+			<url-pattern>/theaterbeforechangeservlet</url-pattern>
+		</servlet-mapping>
+
+
+
+
+		<servlet>
+			<servlet-name>kanriMovieTheater</servlet-name>
+			<jsp-file>/kanriMovieTheater.jsp</jsp-file>
+		</servlet>
+
+		<servlet-mapping>
+			<servlet-name>kanriMovieTheater</servlet-name>
+			<url-pattern>/kanrimovietheater</url-pattern>
+		</servlet-mapping>
+		
+		
+		
+		
+		<servlet>
+			<servlet-name>TheaterDeleteServlet</servlet-name>
+			<servlet-class>kanri.TheaterDeleteServlet</servlet-class>
+		</servlet>
+		
+		<servlet-mapping>
+			<servlet-name>TheaterDeleteServlet</servlet-name>
+			<url-pattern>/theaterdeleteservlet</url-pattern>
+		</servlet-mapping>
+	<!--映画館-->
+
+
+
+	<!--映画-->
+		<servlet>
+			<servlet-name>MovieAddServlet</servlet-name>
+			<servlet-class>kanri.MovieAddServlet</servlet-class>
+		</servlet>
+		
+		<servlet-mapping>
+			<servlet-name>MovieAddServlet</servlet-name>
+			<url-pattern>/movieaddservlet</url-pattern>
+		</servlet-mapping>
+
+
+
+		<servlet>
+			<servlet-name>MovieDeleteServlet</servlet-name>
+			<servlet-class>kanri.MovieDeleteServlet</servlet-class>
+		</servlet>
+		
+		<servlet-mapping>
+			<servlet-name>MovieDeleteServlet</servlet-name>
+			<url-pattern>/moviedeleteservlet</url-pattern>
+		</servlet-mapping>
+
+
+
+		<servlet>
+			<servlet-name>MovieSearchServlet</servlet-name>
+			<servlet-class>kanri.MovieSearchServlet</servlet-class>
+		</servlet>
+		
+		<servlet-mapping>
+			<servlet-name>MovieSearchServlet</servlet-name>
+			<url-pattern>/moviesearchservlet</url-pattern>
+		</servlet-mapping>
+
+
+
+		<servlet>
+			<servlet-name>MovieChangeServlet</servlet-name>
+			<servlet-class>kanri.MovieChangeServlet</servlet-class>
+		</servlet>
+		
+		<servlet-mapping>
+			<servlet-name>MovieChangeServlet</servlet-name>
+			<url-pattern>/moviechangeservlet</url-pattern>
+		</servlet-mapping>
+
+
+
+		<servlet>
+			<servlet-name>kanriMovie</servlet-name>
+			<jsp-file>/kanriMovie.jsp</jsp-file>
+		</servlet>
+
+		<servlet-mapping>
+			<servlet-name>kanriMovie</servlet-name>
+			<url-pattern>/kanrimovie</url-pattern>
+		</servlet-mapping>
+	<!--映画-->
+
+
+
+	<!--上映スケジュール-->
+		<servlet>
+			<servlet-name>ScheduleSearchServlet</servlet-name>
+			<servlet-class>kanri.ScheduleSearchServlet</servlet-class>
+		</servlet>
+		
+		<servlet-mapping>
+			<servlet-name>ScheduleSearchServlet</servlet-name>
+			<url-pattern>/schedulesearchservlet</url-pattern>
+		</servlet-mapping>
+
+
+
+		<servlet>
+			<servlet-name>ScheduleDeleteServlet</servlet-name>
+			<servlet-class>kanri.ScheduleDeleteServlet</servlet-class>
+		</servlet>
+		
+		<servlet-mapping>
+			<servlet-name>ScheduleDeleteServlet</servlet-name>
+			<url-pattern>/scheduledeleteservlet</url-pattern>
+		</servlet-mapping>
+
+
+
+		<servlet>
+			<servlet-name>ScheduleAddServlet</servlet-name>
+			<servlet-class>kanri.ScheduleAddServlet</servlet-class>
+		</servlet>
+		
+		<servlet-mapping>
+			<servlet-name>ScheduleAddServlet</servlet-name>
+			<url-pattern>/scheduleaddservlet</url-pattern>
+		</servlet-mapping>
+
+
+
+		<servlet>
+			<servlet-name>ScheduleChangeServlet</servlet-name>
+			<servlet-class>kanri.ScheduleChangeServlet</servlet-class>
+		</servlet>
+		
+		<servlet-mapping>
+			<servlet-name>ScheduleChangeServlet</servlet-name>
+			<url-pattern>/schedulechangeservlet</url-pattern>
+		</servlet-mapping>
+
+
+
+		<servlet>
+			<servlet-name>kanriMovieSchedule</servlet-name>
+			<jsp-file>/kanriMovieSchedule.jsp</jsp-file>
+		</servlet>
+
+		<servlet-mapping>
+			<servlet-name>kanriMovieSchedule</servlet-name>
+			<url-pattern>/kanrimovieschedule</url-pattern>
+		</servlet-mapping>
+	<!--上映スケジュール-->
+<!--管理ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー-->
+	
+	
+	
+
+</web-app>
