@@ -13,27 +13,29 @@
     <body>
         <h1>映画館管理画面</h1>
     <!--ーーーーーーーーーーーーーーー追加ーーーーーーーーーーーーーーー-->
-        ーーー追加ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+        <label>
         <form method='post' action='theateraddservlet'><!--theateraddservlet-->
             <input type='text' name='add'>
             <!--ボタン-->
             <input type='submit' value='追加'><br>
         </form>
+        </label>
         <br>
 
     <!--ーーーーーーーーーーーーーーー削除ーーーーーーーーーーーーーーー-->
-        ーーー削除ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+        <label>
         <c:forEach var="theaterlist" items="${theaterlist}">
             <form method='post' action='theaterdeleteservlet'><!--theaterdeleteservlet-->
                 <p style="display:inline;">${theaterlist.name}</p>
                 <input type='hidden' name='delete' value='${theaterlist.name}'>
                 <input type='submit' value='削除'>
             </form>
+            </label>
         </c:forEach>
         <br>
         
     <!--ーーーーーーーーーーーーーーー変更ーーーーーーーーーーーーーーー-->
-        ーーー変更ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+        <label>
         <form method='post' action='theaterchangeservlet'><!--theaterchangeservlet-->
             変更前
             <select name="beforechange">
@@ -48,6 +50,7 @@
             <!--ボタン-->
             <input type='submit' value='変更'>
         </form>
+        </label>
         <!--管理者トップ-->
         <a href="kanriTop.html">管理トップへ</a>
     </body>

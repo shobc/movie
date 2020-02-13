@@ -33,8 +33,9 @@ public class MovieQuery{
 			//select文
 			String sql="select title,image,to_char(end_period,'yyyy/mm/dd'),to_char(release_period,'yyyy/mm/dd'),Detailed_explanation,schedule_id "+
 						"from schedule_table "+
-						"where movie_theater_id = (select movie_theater_id from movie_theater_table where name = '"+theater_name+"')" ;
+						"where movie_theater_id IN (select movie_theater_id from movie_theater_table where name = '"+theater_name+"')" ;
 			
+            
 			System.out.println(theater_name+"で検索開始");
 
 			//Statementインターフェイスを実装するクラスをインスタンス化する
@@ -43,6 +44,7 @@ public class MovieQuery{
 			//select文を実行し
 			//ResultSetインターフェイスを実装したクラスの
 			//インスタンスが返る
+            System.out.println(sql);
 			ResultSet rs=st.executeQuery(sql);
 			
 			//カーソルを一行だけスクロールし、データをフェッチする
@@ -67,7 +69,7 @@ public class MovieQuery{
 				
 			}
 			System.out.println(theater_name+"で検索完了");
-			System.out.println(moviedata.get(1));			
+//			System.out.println(moviedata.get(1));			
 			
 			//Oracleから切断する
 			cn.close();
