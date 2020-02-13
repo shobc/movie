@@ -1,0 +1,161 @@
+/*－－－－－－－－－－－－－－－ドロップテーブルーーーーーーーーーーーーーーーーーー*/
+DROP TABLE purchase_information_table;
+DROP TABLE user_information_table;
+DROP TABLE user_table;
+DROP TABLE seat_number_table;
+DROP TABLE schedule_detail_table;
+DROP TABLE schedule_table;
+DROP TABLE movie_theater_table;
+commit;
+
+/*－－－－－－－－－－－－－－－ドロップシーケンスーーーーーーーーーーーーーーーーーー*/
+DROP SEQUENCE theater_number;
+DROP SEQUENCE schedule_number;
+DROP SEQUENCE schedule_detail_number;
+DROP SEQUENCE seat_number_sequence;
+DROP SEQUENCE purchase_information_sequence;
+commit;
+
+/*－－－－－－－－－－－－－－－クリエイトテーブルーーーーーーーーーーーーーーーーーー*/
+-- 映画館テーブル
+
+CREATE TABLE movie_theater_table(
+	movie_theater_id NUMBER(8) NOT NULL,
+	name VARCHAR2(100)NOT NULL,
+	CONSTRAINT pk_movie_theater_id PRIMARY KEY(movie_theater_id)
+);
+
+-- スケジュールテーブル
+
+CREATE TABLE schedule_table(	
+	schedule_id NUMBER(8)NOT NULL,
+	movie_theater_id NUMBER(8)NOT NULL,
+	title VARCHAR2(500)NOT NULL,
+	image VARCHAR2(500) DEFAULT '1.png',
+	end_period date NOT NULL,
+	release_period date NOT NULL,
+	Detailed_explanation VARCHAR2 (1000)NOT NULL,
+	CONSTRAINT pk_schedule_id PRIMARY KEY(schedule_id),
+	CONSTRAINT fk_movie_theater_id FOREIGN KEY (movie_theater_id) REFERENCES movie_theater_table(movie_theater_id)
+);
+
+
+-- スケジュール詳細テーブル
+
+CREATE TABLE schedule_detail_table(
+	schedule_detail_id NUMBER(8)NOT NULL,
+	schedule_id NUMBER(8)NOT NULL,
+	start_time date NOT NULL,
+	end_time date NOT NULL,
+	theater VARCHAR2(20)NOT NULL,
+	CONSTRAINT pk_schedule_detail_id PRIMARY KEY(schedule_detail_id),
+	CONSTRAINT fk_schedule_id FOREIGN KEY (schedule_id) REFERENCES schedule_table(schedule_id)
+);
+
+-- 予約されている座席テーブル
+
+CREATE TABLE seat_number_table(
+	seat_number_id NUMBER(8)NOT NULL,
+	schedule_detail_id NUMBER(8)NOT NULL,
+	seat_number VARCHAR2(100)NOT NULL,
+	CONSTRAINT pk_seat_number_id PRIMARY KEY(seat_number_id),
+	CONSTRAINT uni_seat_id unique(schedule_detail_id,seat_number),
+	CONSTRAINT fk_schedule_detail_id FOREIGN KEY (schedule_detail_id) REFERENCES schedule_detail_table(schedule_detail_id)
+);
+
+-- ユーザーテーブル
+
+CREATE TABLE user_table(
+	user_id NUMBER(8) NOT NULL,
+	mail VARCHAR2(100) NOT NULL,
+	password VARCHAR2(20) NOT NULL,
+	CONSTRAINT pk_user_id PRIMARY KEY(user_id),
+	CONSTRAINT  uni_mail UNIQUE(mail)
+ );
+
+-- ユーザーの詳細テーブル
+
+CREATE TABLE user_information_table(
+	user_id NUMBER(8) NOT NULL,
+	search_id VARCHAR2(20) NOT NULL,
+	nickname VARCHAR2(40) NOT NULL,
+	qrcode VARCHAR2(200),
+	single_word VARCHAR2(100),
+	top_picture blob,
+	CONSTRAINT fk_user_table_id  FOREIGN KEY (user_id) REFERENCES user_table(user_id),
+	CONSTRAINT  uni_search_id UNIQUE(search_id)
+);
+
+-- 予約している座席に対する詳細テーブル
+
+CREATE TABLE purchase_information_table(
+	purchase_information_id NUMBER(8)NOT NULL,
+	seat_number_id NUMBER(8)NOT NULL,
+	user_id NUMBER(8)NOT NULL,
+	denomination VARCHAR2(30)NOT NULL,
+	payment VARCHAR2(20)NOT NULL,
+	automatic_number VARCHAR2(100)NOT NULL,
+	pay_flag NUMBER(1) NOT NULL,
+	CONSTRAINT pk_purchase_information_id PRIMARY KEY(purchase_information_id),
+	CONSTRAINT fk_seat_number_id FOREIGN KEY (seat_number_id) REFERENCES seat_number_table(seat_number_id),
+	CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES user_table(user_id)
+);
+
+commit;
+
+/*－－－－－－－－－－－－－－－クリエイトシーケンスーーーーーーーーーーーーーーーーーー*/
+-- 映画館順序
+
+CREATE SEQUENCE theater_number
+	increment by 1
+	start with 1
+	maxvalue 1000
+;
+
+-- 映画スケジュール順序
+
+CREATE SEQUENCE schedule_number
+	increment by 1
+	start with 1
+	maxvalue 100000
+;
+
+-- 映画スケジュール詳細順序
+
+CREATE SEQUENCE schedule_detail_number
+	increment by 1
+	start with 1
+	maxvalue 100000
+;
+
+-- 座席順序
+
+CREATE SEQUENCE seat_number_sequence
+	increment by 1
+	start with 1
+	maxvalue 1000
+;
+
+-- 座席詳細順序
+
+CREATE SEQUENCE purchase_information_sequence
+	increment by 1
+	start with 1
+	maxvalue 1000
+;
+
+commit;
+
+
+
+
+-- ユーザーデータ
+insert into user_table values(1,'mac@gmail.com','pro');
+insert into user_table values(2,'apple@gmail.com','pro');
+
+-- ユーザーの詳細データ
+insert into user_information_table(user_id,search_id,nickname) values(1,'mac','mac');
+insert into user_information_table(user_id,search_id,nickname) values(1,'apple','apple');
+
+commit;
+
