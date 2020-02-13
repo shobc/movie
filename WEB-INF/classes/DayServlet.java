@@ -19,12 +19,12 @@ import profile.DayProfile;
 import profile.DayDetailsProfile;
 
 public class DayServlet extends HttpServlet{
-	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException,ServletException{
-		doPost(req, res);
-	}
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException,ServletException{
+		doGet(req, res);
+	}
+	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException,ServletException{
 		//文字コード
-		req.setCharacterEncoding("Windows-31J");
+		req.setCharacterEncoding("windows-31j");
 
 		//セッション生成
 		HttpSession session = req.getSession();
@@ -45,8 +45,15 @@ public class DayServlet extends HttpServlet{
 			session.removeAttribute("date");
 		}
 
-		//変更予定
-		String theater_name = "青木映画館";
+		//映画館受け取り
+		String theater_name = req.getParameter("theater_name");
+
+		//空文字だと青木映画館
+		if(theater_name.equals("")){
+			theater_name = "青木映画館";
+		}
+		
+
 		
 
 
@@ -73,7 +80,7 @@ public class DayServlet extends HttpServlet{
 		//パラメータをJSPに転送したい
 		// req.setAttribute("daylist",daylist);
 		req.setAttribute("daylist",detailsMovie);
-		// req.setAttribute("theater_name",theater_name);	
+		req.setAttribute("theater_name",theater_name);	
 		
 		//転送先のJSPを指定
 		RequestDispatcher dis = req.getRequestDispatcher("/movietop");

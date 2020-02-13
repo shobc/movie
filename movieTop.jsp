@@ -7,7 +7,7 @@
 
 <html lang="ja">
     <head>
-        <meta charset="shift_jis">
+        <meta charset="Windows-31J">
         <title>映画トップページ</title>
             <link href="slick-1.8.1/slick/slick-theme.css" rel="stylesheet" type="text/css" charset="UTF-8">
             <link href="slick-1.8.1/slick/slick.css" rel="stylesheet" type="text/css" charset="UTF-8">
@@ -128,7 +128,7 @@
                             url:"AjaxServlet",
                             data:{data:id}
                         }).done(function(result){
-                            $("#detailTable").load("dayservlet #detailTable");
+                            $("#aaa").load("dayservlet #detailTable");
                         })
                 }
 
@@ -172,7 +172,22 @@
             }
         </style>
         <br><br>
+
         <center>
+            <form action="dayservlet" method="POST">
+
+                <select name="theater_name">
+                    <option value="${theater_name}">${theater_name}</option>
+                    <option value="青木映画館">青木映画館</option>
+                    <option value="ざわ映画館">ざわ映画館</option>
+                    <option value="しおだ映画館">しおだ映画館</option>
+                </select>
+                <input type="submit" value="映画館変更">
+
+            </form>
+    
+            <br><br>
+
             <div id="movieArea"></div>
             <div class="tabcontent" id="tabcontent1"><br><br>
                 <div class="movieS">
@@ -180,6 +195,7 @@
                         ${result}
                         <!-- <tbody> -->
                         <br>
+                        <div id="aaa">
                         <table border="1" width="1000" id="detailTable">
                             <c:forEach var="d" items="${daylist}">
                                 <tr>
@@ -197,18 +213,21 @@
                                     </td>
                                     <c:forEach var="tt" items="${d.day}">
                                         <td class="active" id="B${d.schedule_detail_id}">
-                                                ${tt.theater}<br>${tt.start_time}~${tt.end_time}<a href="#?$schedule_detail_id=${tt.schedule_detail_id}">予約</a>
+                                                ${tt.theater}<br>${tt.start_time}~${tt.end_time}<a href="AccessSeatServlet?theater=${tt.theater}&schedule_detail_id=${tt.schedule_detail_id}">予約</a>
                                         </td>
                                     </c:forEach>
                                 </tr>
                             </c:forEach>
-                        </table><br>
+                        </table>
+                        </div>
+                        <br>
                         <br>
                         <!-- </tbody> -->
                     </div>
                 </div>
             </div>
         </center>
+
     </body>
 </html>
 

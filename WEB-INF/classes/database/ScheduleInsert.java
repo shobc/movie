@@ -4,11 +4,18 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class ScheduleInsert{
 	
 	public static void main(String[] args){
-		ScheduleInsert.insert("2019/11/22 11:00","2019/11/22 13:00","シアター2","なかざわと子犬たち","青木映画館");
+		// ScheduleInsert.insert("2019/11/22 11:00","2019/11/22 13:00","シアター2","なかざわと子犬たち","青木映画館");
+		ArrayList aa = new ArrayList();
+		aa = getWeek("2020/02/07");
+		for(int i = 0;i < aa.size();i++){
+			System.out.println(aa.get(i));
+		}
 	}
 	
 	public static int insert(String start_time,String end_time,String theater,String title,String theater_name){
@@ -64,6 +71,69 @@ public class ScheduleInsert{
 			e.printStackTrace();
 		}
 		return count;
+	}
+
+	//一週間を取得するメソッド
+	public static ArrayList getWeek(String date){
+
+		//return用のArrayList
+		ArrayList listDate = new ArrayList();
+		//取得したデータを入れるString[]
+		String[] newDate = new String[7];
+
+		try{
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+
+			//Oracleに接続する
+			Connection cn=
+				DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","learn","learn");
+			System.out.println("接続完了");
+			
+			
+			//select文
+			String sql="select "+
+						"to_char(to_date('"+date+"','yyyy/mm/dd'),'yyyy/mm/dd'), "+
+						"to_char(to_date('"+date+"','yyyy/mm/dd')+1,'yyyy/mm/dd'), "+
+						"to_char(to_date('"+date+"','yyyy/mm/dd')+2,'yyyy/mm/dd'), "+
+						"to_char(to_date('"+date+"','yyyy/mm/dd')+3,'yyyy/mm/dd'), "+
+						"to_char(to_date('"+date+"','yyyy/mm/dd')+4,'yyyy/mm/dd'), "+
+						"to_char(to_date('"+date+"','yyyy/mm/dd')+5,'yyyy/mm/dd'), "+
+						"to_char(to_date('"+date+"','yyyy/mm/dd')+6,'yyyy/mm/dd') from dual";
+			
+			//Statementインターフェイスを実装するクラスをインスタンス化する
+			Statement st=cn.createStatement();
+			
+			//select文を実行し
+			//ResultSetインターフェイスを実装したクラスの
+			//インスタンスが返る
+			ResultSet rs=st.executeQuery(sql);
+			
+
+			//カーソルを一行だけスクロールし、データをフェッチする
+			rs.next();
+			for(int i = 0;i < 7;i++){
+				newDate[i] = rs.getString(i+1);//i列目のデータを取得
+				// System.out.println("newDate["+i+"]="+newDate[i]);
+				listDate.add(newDate[i]);
+			}
+
+			//Oracleから切断する
+			cn.close();
+
+			System.out.println("切断完了");
+			System.out.println(" ");
+
+		}catch(ClassNotFoundException e){
+			e.printStackTrace();
+			System.out.println("クラスがないみたい。");
+		}catch(SQLException e){
+			e.printStackTrace();
+			System.out.println("SQL関連の例外みたい。");
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return listDate;
+		
 	}
 }
 

@@ -29,6 +29,81 @@
 	</servlet-mapping>
 
 
+	<servlet>
+        <servlet-name>AccessSeatServlet</servlet-name>
+        <servlet-class>AccessSeatServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AccessSeatServlet</servlet-name>
+        <url-pattern>/AccessSeatServlet</url-pattern>
+    </servlet-mapping>
+    
+    
+    <servlet>
+        <servlet-name>ReservationServlet</servlet-name>
+        <servlet-class>ReservationServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ReservationServlet</servlet-name>
+        <url-pattern>/ReservationServlet</url-pattern>
+    </servlet-mapping>
+    
+
+    <servlet>
+        <servlet-name>ConfirmServlet</servlet-name>
+        <servlet-class>ConfirmServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ConfirmServlet</servlet-name>
+        <url-pattern>/ConfirmServlet</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>MyPageServlet</servlet-name>
+        <servlet-class>MyPageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MyPageServlet</servlet-name>
+        <url-pattern>/MyPageServlet</url-pattern>
+    </servlet-mapping>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <!--管理ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー-->
