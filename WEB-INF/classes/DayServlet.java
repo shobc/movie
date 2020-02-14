@@ -43,15 +43,17 @@ public class DayServlet extends HttpServlet{
 		if(session.getAttribute("date")!=null){
 			day = (String)session.getAttribute("date");
 			session.removeAttribute("date");
+            System.out.println("day"+day);
 		}
 
 		//‰f‰æŠÙó‚¯æ‚è
 		String theater_name = req.getParameter("theater_name");
-
-		//‹ó•¶š‚¾‚ÆÂ–Ø‰f‰æŠÙ
-		if(theater_name.equals("")){
+        System.out.println("theater_name="+theater_name);
+        //‹ó•¶š‚¾‚ÆÂ–Ø‰f‰æŠÙ
+        if(theater_name==null||theater_name.equals("")){
 			theater_name = "Â–Ø‰f‰æŠÙ";
-		}
+            System.out.println("If‚Ì’†theater_name="+theater_name);
+        }
 		
 
 		

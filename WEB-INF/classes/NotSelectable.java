@@ -11,7 +11,7 @@ public class NotSelectable{
         String notSelectableSeats = "";
         
         try{
-        prop.load(new FileInputStream("C:/testkankyou/WEB-INF/classes/notSelectableSeats.properties"));
+        prop.load(new FileInputStream("C:/webapps/movie/WEB-INF/classes/notSelectableSeats.properties"));
         String notSelectableSeat = prop.getProperty(key);
         notSelectableSeats = notSelectableSeat;
 

@@ -68,48 +68,12 @@
         <url-pattern>/MyPageServlet</url-pattern>
     </servlet-mapping>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!--管理ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー-->
 	<!--映画館-->
 
 
+    
+    
 
 		<servlet>
 			<servlet-name>TheaterAddServlet</servlet-name>

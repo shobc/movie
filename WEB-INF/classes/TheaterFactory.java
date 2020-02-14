@@ -11,7 +11,7 @@ public class TheaterFactory{
         String seats = "";
 
         try{
-        prop.load(new FileInputStream("C:\\testkankyou\\WEB-INF\\classes\\seat.properties"));
+        prop.load(new FileInputStream("C:\\webapps\\movie\\WEB-INF\\classes\\seat.properties"));
         String seat = prop.getProperty(key);
         System.out.println("key"+key);
         seats = seat;

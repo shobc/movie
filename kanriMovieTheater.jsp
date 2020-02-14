@@ -23,8 +23,9 @@
         <br>
 
     <!--ーーーーーーーーーーーーーーー削除ーーーーーーーーーーーーーーー-->
-        <label>
+        
         <c:forEach var="theaterlist" items="${theaterlist}">
+            <label>
             <form method='post' action='theaterdeleteservlet'><!--theaterdeleteservlet-->
                 <p style="display:inline;">${theaterlist.name}</p>
                 <input type='hidden' name='delete' value='${theaterlist.name}'>

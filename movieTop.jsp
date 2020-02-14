@@ -4,17 +4,21 @@
 
 <%--JSTL 1.1.2 core タグライブラリ--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<!DOCTYPE html>
 <html lang="ja">
     <head>
         <meta charset="Windows-31J">
         <title>映画トップページ</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
             <link href="slick-1.8.1/slick/slick-theme.css" rel="stylesheet" type="text/css" charset="UTF-8">
             <link href="slick-1.8.1/slick/slick.css" rel="stylesheet" type="text/css" charset="UTF-8">
             <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" charset="UTF-8"></script>
             <script type="text/javascript" src="slick-1.8.1/slick/slick.min.js" charset="UTF-8"></script> 
             <link rel="stylesheet" type="text/css" href="">
             <style>
+                body{
+                    background-color: #f0f0f0;
+                }
                 .movie{
                     height: auto;
                     width: 70%;
@@ -34,6 +38,41 @@
                 .slick-prev:before, /*横移動のスイッチ*/
                 .slick-next:before {
                     color: #000;
+                }
+                
+                
+                
+                
+                ul.topnav {
+                    overflow: hidden;
+                    margin: 0;
+                    padding: 0;
+                    list-style-type: none;
+                    background-color: #ffffff;
+                }
+                ul.topnav li {
+                    float: left;
+                }
+                ul.topnav li a {
+                    display: block;
+                    padding: 14px 16px;
+                    text-align: center;
+                    text-decoration: none;
+                    color: #575757;
+                }
+                ul.topnav li a:hover:not(.active) {
+                    background-color: #a9bce2;
+                }
+                ul.topnav li a.active {
+                    background-color: #da3c41;
+                }
+                ul.topnav li.right {
+                    float: right;
+                }
+                @media screen and (max-width: 480px) {
+                    ul.topnav li.right, ul.topnav li {
+                        float: none;
+                    }
                 }
 
             </style>
@@ -65,7 +104,7 @@
                         //     console.log("aaa");
                         // }
                         // htmlstr += "<input type='button' class='' id='"+(date.getMonth()+1)+"/"+date.getDate()+"' onClick='document.location="+url+";' value='"+(date.getMonth()+1)+"/"+date.getDate()+"("+dayOfWeekStr+")'></input>";
-                        htmlstr += "<button class='tabcontent' onclick=dateChange('"+day+"') id='"+(date.getFullYear())+"/"+(date.getMonth()+1)+"/0"+date.getDate()+"'>"+((date.getMonth()+1)+"/"+date.getDate()+"("+dayOfWeekStr+")")+"</button>";
+                        htmlstr += "<button style='font-weight: bold;font-size: 20px;' class='tabcontent' onclick=dateChange('"+day+"') id='"+(date.getFullYear())+"/"+(date.getMonth()+1)+"/0"+date.getDate()+"'>"+((date.getMonth()+1)+"/"+date.getDate()+"("+dayOfWeekStr+")")+"</button>";
 
                         // htmlstr += '<input type="radio" name="hiduke" id="hidukeC" checked><label for="hidukeC" class="hi">'+(date.getMonth()+1)+"/"+date.getDate()+"("+dayOfWeekStr+")"+"</label>";
                             
@@ -170,10 +209,20 @@
             .passive{
                 display: none;
             }
+            .tabcontent{
+                width: 100px;
+            }
         </style>
-        <br><br>
+        <ul class="topnav">
+            <li><a class="active" href="">${theater_name}</a></li>
+            <li><a href="#news">News</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li class="right"><a href="#about">About</a></li>
+        </ul>
 
         <center>
+
+            <!--
             <form action="dayservlet" method="POST">
 
                 <select name="theater_name">
@@ -185,21 +234,22 @@
                 <input type="submit" value="映画館変更">
 
             </form>
+-->
     
             <br><br>
-
+            
             <div id="movieArea"></div>
-            <div class="tabcontent" id="tabcontent1"><br><br>
+            <div class="tabcontent2" id="tabcontent1"><br><br>
                 <div class="movieS">
                     <div id="mTitle">
                         ${result}
                         <!-- <tbody> -->
                         <br>
                         <div id="aaa">
-                        <table border="1" width="1000" id="detailTable">
+                        <table border="1" width="1000" id="detailTable" style="border: none;">
                             <c:forEach var="d" items="${daylist}">
                                 <tr>
-                                    <th colspan="5">${d.title}</th>
+                                    <th colspan="5" style="font-size: 20px;color: #434d5d;">${d.title}</th>
                                 </tr>
                                 <tr>
                                     <td colspan="5">
