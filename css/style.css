@@ -1,0 +1,160 @@
+body{
+    background-color: #f0f0f0;
+}
+.movie{
+    height: auto;
+    width: 70%;
+    text-align:center;
+
+}
+.slider{
+    height: 10%;
+    margin: 50px auto;
+    width: 50%;
+}
+/* .slider button{
+height: auto;
+width: 50%;
+} 
+/*slick setting*/
+.slick-prev:before, /*横移動のスイッチ*/
+.slick-next:before {
+    color: #000;
+}
+
+
+
+
+ul.topnav {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    background-color: #ffffff;
+}
+ul.topnav li {
+    float: left;
+}
+ul.topnav li a {
+    display: block;
+    padding: 14px 16px;
+    text-align: center;
+    text-decoration: none;
+    color: #575757;
+}
+ul.topnav li a:hover:not(.active) {
+    background-color: #a9bce2;
+}
+ul.topnav li a.active {
+    background-color: #ffffff;
+}
+ul.topnav li.right {
+    float: right;
+}
+@media screen and (max-width: 480px) {
+    ul.topnav li.right, ul.topnav li {
+        float: none;
+    }
+}
+
+*{
+    margin:0;
+    padding:0;
+}
+.active{
+    display: inline-block;
+}
+.passive{
+    display: none;
+}
+.tabcontent{
+    width: 100px;
+    background-color: #ffffff;
+}
+#right2{
+    display: inline-block;
+    height: 40px;
+    margin-right: 10px;
+    margin-top: 9px;
+}
+#img{
+    width: 60px;
+    height: 50px;
+    margin-left: 10px;
+    margin-top: 6px;
+}
+
+
+/*ハンバーガーアイコンdesign*/
+#nav-open span, #nav-open span:before, #nav-open span:after {
+    position: absolute;
+    background: #555;
+    display: block;
+    content: '';
+    cursor: pointer;
+}
+
+/*閉じる用の薄黒カバー*/
+#nav-close {
+    display: none;/*はじめは隠しておく*/
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    opacity: 0;
+    transition: .3s ease-in-out;
+}
+
+/*中身*/
+#nav-content {
+    overflow: auto;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 9999;/*最前面*/
+    width: 90%;
+    max-width: 230px;/*アイコンの中身の幅*/
+    height: 100%;
+    background: #fff;
+    transition: .3s ease-in-out;/*スライドインを滑らかにする*/
+    -webkit-transform: translateX(-105%);
+    transform: translateX(105%);/*左に隠しておく*/
+}
+
+/*閉じるための表示*/
+#nav-input:checked ~ #nav-close {
+    display: block;
+    opacity: .5;
+}
+
+#nav-input:checked ~ #nav-content {
+    -webkit-transform: translateX(0%);
+    transform: translateX(0%);/*スライドイン*/
+    box-shadow: 6px 0 25px rgba(0,0,0,.15);
+}
+/*
+.nav-drawer{
+display: inline;
+width: 40px;
+height: 30px;
+top: 5%;
+}
+*/
+
+/*チェックボックス等は非表示に*/
+.nav-unshown {
+    display:none;
+}
+/*アイコンのスペース*/
+#nav-open {
+    display: inline-block;
+    width: 40px;
+    height: 30px;
+    vertical-align: middle;
+}
+
+#detailTable{
+    background-color: #ffffff;
+}

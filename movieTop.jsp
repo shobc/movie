@@ -14,68 +14,7 @@
             <link href="slick-1.8.1/slick/slick.css" rel="stylesheet" type="text/css" charset="UTF-8">
             <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" charset="UTF-8"></script>
             <script type="text/javascript" src="slick-1.8.1/slick/slick.min.js" charset="UTF-8"></script> 
-            <link rel="stylesheet" type="text/css" href="">
-            <style>
-                body{
-                    background-color: #f0f0f0;
-                }
-                .movie{
-                    height: auto;
-                    width: 70%;
-                    text-align:center;
-                    
-                }
-                .slider{
-                    height: 10%;
-                    margin: 50px auto;
-                    width: 50%;
-                }
-                /* .slider button{
-                    height: auto;
-                    width: 50%;
-                } 
-                /*slick setting*/
-                .slick-prev:before, /*â°à⁄ìÆÇÃÉXÉCÉbÉ`*/
-                .slick-next:before {
-                    color: #000;
-                }
-                
-                
-                
-                
-                ul.topnav {
-                    overflow: hidden;
-                    margin: 0;
-                    padding: 0;
-                    list-style-type: none;
-                    background-color: #ffffff;
-                }
-                ul.topnav li {
-                    float: left;
-                }
-                ul.topnav li a {
-                    display: block;
-                    padding: 14px 16px;
-                    text-align: center;
-                    text-decoration: none;
-                    color: #575757;
-                }
-                ul.topnav li a:hover:not(.active) {
-                    background-color: #a9bce2;
-                }
-                ul.topnav li a.active {
-                    background-color: #da3c41;
-                }
-                ul.topnav li.right {
-                    float: right;
-                }
-                @media screen and (max-width: 480px) {
-                    ul.topnav li.right, ul.topnav li {
-                        float: none;
-                    }
-                }
-
-            </style>
+            <link rel="stylesheet" type="text/css" href="css/style.css">
 
             <script type="text/javascript">
                 var judge = /[0-9]{2}/;
@@ -198,26 +137,23 @@
             </script>
     </head>
     <body>
-        <style>
-            *{
-                margin:0;
-                padding:0;
-            }
-            .active{
-                display: inline-block;
-            }
-            .passive{
-                display: none;
-            }
-            .tabcontent{
-                width: 100px;
-            }
-        </style>
+
         <ul class="topnav">
+            <li><img src="theaterLogo_oizumi.png" id="img"></li>
             <li><a class="active" href="">${theater_name}</a></li>
-            <li><a href="#news">News</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li class="right"><a href="#about">About</a></li>
+            <li><a href="#contact"></a></li>
+            <li class="right">
+                <img src="menu.png" id="right2">
+<!--                <div id="nav-drawer">-->
+                    <input id="nav-input" type="checkbox" class="nav-unshown">
+                    <label id="nav-open" for="nav-input"><span></span></label>
+                    <label class="nav-unshown" id="nav-close" for="nav-input"></label>
+                    <div id="nav-content">
+                        <p class="line"><a class="kugiri" href="">ê¬ñÿâfâÊäŸ</a></p>
+                        <p class="line"><a class="kugiri" href="">Ç¥ÇÌâfâÊäŸ</a></p>
+                        <p class="line"><a class="kugiri" href="">ÇµÇ®ÇæâfâÊäŸ</a></p>
+                    </div>
+            </li>
         </ul>
 
         <center>
