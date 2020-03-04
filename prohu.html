@@ -1,0 +1,139 @@
+<!-- <%@page pageEncoding="Windows-31J"
+        contentType="text/html; charset=Windows-31J"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> -->
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" media="screen" href="css/home.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/home.css" title="標準">
+    <link rel="Alternate StyleSheet" type="text/css" media="screen,projection,tv" href="css/home.css" title="大きな文字">
+    <link rel="styleSheet" type="text/css" media="print,handheld" href="css/home.css">
+
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+
+    <script src="js/jquery-3.4.1.min.js"></script>
+ 
+    <title>ホーム</title>
+</head>
+<body>
+
+<div class="top">
+<!-- ハンバーガーアイコン・メニュー -->
+    <div id="nav-drawer">
+        <input id="nav-input" type="checkbox" class="nav-unshown">
+        <label id="nav-open" for="nav-input"><span></span></label>
+        <label class="nav-unshown" id="nav-close" for="nav-input"></label>
+        <!-- ハンバーガーアイコンの中身-->
+        <div id="nav-content">
+            <p class="line"><a class="kugiri" href="profilesetting">プロフィール設定</a></p>
+            <p class="line"><a class="kugiri" href="BlockUserListServlet">ブロックリスト</a></p>
+            <p class="line"><a class="kugiri" href="deletesession">ログアウト</a></p>
+            <p class="line"><a class="kugiri" href="deletesession">アカウント削除</a></p>
+        </div>
+    </div>
+    
+<!--通知・友達検索-->
+    <div class="notification">
+        <img class="rogo" src="img/kuro.PNG" width="100px;" height="30px;">
+        <a href="NewFriendListServlet"><img src="img/kensaku.png" width="40px;" height="38px;"></a>
+        <img src="img/tuuti.png" width="40px;" height="40px;"><!--${noticeCount}-->
+    </div>
+</div>
+<!--　マイプロフィール -->
+<script>
+    $(function(){
+        $("#watashi").click(function(){
+            $("#myProf").slideToggle(400);  //スライドイン０，４秒
+            setTimeout(function(){
+                $("#upr , #downr").toggleClass("active passive");
+            },250);
+        });
+    });
+</script>
+
+<!-- プロフドロップダウン -->
+<div id="watashi">
+    <div>
+        <p class="titleDrop">プロフィール</p>
+    </div>
+    <div class="triangle">
+        <img id="upr" class="active" src="img/triangle.png" width="60%" height="50%">
+        <img id="downr" class="passive" src="img/reverseTriangle.png" width="60%" height="50%">
+    </div>
+</div>
+
+<!-- 友達一人に対するプロフィール -->
+<div id="myProf">
+    <c:forEach var="fl" items="${friendList}">
+        <div class="friend">
+            <a onclick="profilePage('ProfilePageServlet',${sessionScope.ub.user_id});return false;" href="#">
+                <img class="imgmaru" src="img/tl.png" height="50%" style="border-style:none;"><!--"data:image;base64,${sessionScope.ub.top_picture}"-->
+                <span class="profile">
+                    ${sessionScope.ub.name}
+                    {sessionScope.ub.search_id}<br>
+                    ${sessionScope.ub.single_word}
+                </span>
+            </a>
+        </div>    
+    </c:forEach>
+</div>
+
+<!-- 友達リスト -->
+    <script>
+        $(function(){
+            $("#container").click(function(){
+                $("#frinedList").slideToggle(400);  //スライドイン０，４秒
+                setTimeout(function(){
+                    $("#up , #down").toggleClass("active passive");
+                },250);
+            });
+        });
+    </script>
+<!-- 友達リストドロップダウン -->
+    <center>
+        <div id="movieArea"></div>
+        <div class="tabcontent2" id="tabcontent1"><br><br>
+            <div class="movieS">
+                <div id="mTitle">
+                    ${result}
+
+                    <br>
+                    <div id="aaa">
+                        <div id="detailTable">
+                        <c:forEach var="d" items="${daylist}">
+                            <div id="container">
+                                <div  style="font-size: 20px;color: #434d5d;">
+                                    <p class="titleDrop">${d.title}</p>
+                                </div>  
+                             
+                                <div id="frinedList">
+                                    <c:forEach var="fl" items="${friendList}">
+                                        <div class="friend">
+                                            <a onclick="profilePage('ProfilePageServlet',${fl.user_id});return false;" href="#" >
+                                                <!--                                        <img class="imgmaru" src="data:image;base64,${fl.top_picture}" height="20%"  style="border-style:none;">-->
+                                                <span class="profile">
+                                                    <div>
+                                                        <button class="detail" onclick="detailDisplay('${d.schedule_detail_id}')" id="${d.schedule_detail_id}">詳細</button>
+                                                    </div><br>
+                                                    <div class="passive" id="A${d.schedule_detail_id}">
+                                                        <p style="display: inline; font-size: 110%; font-weight: bold;">映画詳細</p>
+                                                    </div><br>
+                                                    <c:forEach var="tt" items="${d.day}">
+                                                        <div class="active" id="B${d.schedule_detail_id}">
+                                                             ${tt.theater}<br>${tt.start_time}~${tt.end_time}<a href="AccessSeatServlet?theater=${tt.theater}&schedule_detail_id=${tt.schedule_detail_id}">予約</a>
+                                                        </div>
+                                                    </c:forEach>
+                                                </span>
+                                            </a>
+                                        </div> 
+                                        </div>
+                                    </c:forEach>
+                            </div>
+                            </div>
+                            </c:forEach>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </center>
+</body>
+</html>

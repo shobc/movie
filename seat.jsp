@@ -11,6 +11,13 @@
         <meta charset="shift_jis">
         <title>座席表</title>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <style>
+            .seat_number_al{
+                width: 30px;
+                text-align: right;
+                display:inline-block;
+            }
+        </style>
         <script>
             var count = 0;
             var seat =[];
@@ -30,7 +37,7 @@
     </head>
     <body>
         <div>
-            ${seat}
+            <p>${seat}</p>
             <div id="select">
 
             </div>

@@ -1,0 +1,207 @@
+/*///////////////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////↓通知・友達検索↓/////////////////////////////////*/
+/*///////////////////////////////////////////////////////////////////////////*/
+.notification{
+    display: inline;
+    position: absolute;
+    top: 1%;
+    right: 2%;
+}
+
+.rogo{
+    position: absolute;
+    left: -190%;
+    top: 5%;
+}
+
+/*///////////////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////↓友達リスト↓////////////////////////////////////*/
+/*///////////////////////////////////////////////////////////////////////////*/
+
+/* 友達表示ボタンの編集 */
+
+
+.profile{
+    display: inline;
+    position: absolute;
+    right: 55%;
+    z-index: 99;
+    left: 20%;
+}
+
+.friend{
+    text-decoration: underline;
+}
+
+#container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 25px;
+    border: 1px solid black;
+    border-left: 0px;
+    border-right: 0px;
+    margin-top: 10%;
+    margin-bottom: 3%;
+    z-index: 999;
+}
+  
+.passive{
+    display: none;
+}
+
+.up .down{  
+    width: 50px;
+    height: 50px;
+}
+
+.active{
+    display: block;
+}
+
+/* ドロップダウン▽△ボタン */
+.triangle{    
+    width: 20px;
+    height: 20px;
+    position: relative;
+    left: 0;
+    top: 5px;
+}
+/*///////////////////////////////////////////////////////////////////////////*/
+/*/////////////////////////↓ハンバーガーコンフィグ↓//////////////////////////////*/
+/*///////////////////////////////////////////////////////////////////////////*/
+#nav-drawer{
+    display: inline;
+    top: 18%;
+}
+
+/*チェックボックス等は非表示に*/
+.nav-unshown {
+    display:none;
+}
+/*アイコンのスペース*/
+#nav-open {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    vertical-align: middle;
+}
+
+/*ハンバーガーアイコンdesign*/
+#nav-open span, #nav-open span:before, #nav-open span:after {
+    position: absolute;
+    height: 5px;/*線の太さ*/
+    width: 40px;/*長さ*/
+    border-radius: 30px;
+    background: #555;
+    display: block;
+    content: '';
+    cursor: pointer;
+}
+/* 二本目の位置 */
+#nav-open span:before {
+    bottom: -11px;
+}
+/* 三本目の位置 */
+#nav-open span:after {
+    bottom: -23px;
+}
+
+/*閉じる用の薄黒カバー*/
+#nav-close {
+    display: none;/*はじめは隠しておく*/
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    opacity: 0;
+    transition: .3s ease-in-out;
+}
+
+/*中身*/
+#nav-content {
+    overflow: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;/*最前面*/
+    width: 90%;
+    max-width: 230px;/*アイコンの中身の幅*/
+    height: 100%;
+    background: #fff;
+    transition: .3s ease-in-out;/*スライドインを滑らかにする*/
+    -webkit-transform: translateX(-105%);
+    transform: translateX(-105%);/*左に隠しておく*/
+}
+
+/*閉じるための表示*/
+#nav-input:checked ~ #nav-close {
+    display: block;
+    opacity: .5;
+}
+
+#nav-input:checked ~ #nav-content {
+    -webkit-transform: translateX(0%);
+    transform: translateX(0%);/*スライドイン*/
+    box-shadow: 6px 0 25px rgba(0,0,0,.15);
+}
+
+/*///////////////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////↓ホーム内共通設定↓////////////////////////////*/
+/*///////////////////////////////////////////////////////////////////////////*/
+
+/* リンク配色 */
+a:link{
+    color:#000000;
+    text-decoration: none;
+}
+
+table{
+    margin-top:30px;
+    margin-left: 10px;
+}
+
+/* 画像の表示方法 */
+.imgmaru{
+    border-radius: 50%;  /* 角丸半径を50%にする(=円形にする) */
+    width:  50px;       /* 縦横を同値に */
+    height: 50px;       /* 縦横を同値に */
+}
+
+/* サブタイトルのドロップダウンマークの位置 */
+.titleDrop{
+    margin: 0px;
+    margin-left: 5px;
+    background-color: #fff;
+}
+
+/*ヘッドメニューの位置*/
+.top{
+    height: 35px;
+    margin-top: 15px; 
+    /* オーバーラインとアンダーラインを入れる */
+    border: 3px solid black;
+    border-left: 0px;
+    border-right: 0px;
+    border-top: 0px;
+}
+
+/*///////////////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////↓プロフィール設定↓////////////////////////////*/
+/*///////////////////////////////////////////////////////////////////////////*/
+
+#watashi {
+    margin-bottom: 3%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 25px;
+
+    /* オーバーラインとアンダーラインを入れる */
+    border: 1px solid black;
+    border-left: 0px;
+    border-right: 0px;
+    margin-top: 10%;
+}

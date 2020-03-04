@@ -18,6 +18,9 @@ import database.DayQuery;
 import profile.DayProfile;
 import profile.DayDetailsProfile;
 
+import database.HamburgerDate;
+import profile.TheaterProfile;
+
 public class DayServlet extends HttpServlet{
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException,ServletException{
 		doGet(req, res);
@@ -48,6 +51,10 @@ public class DayServlet extends HttpServlet{
 
 		//‰f‰æŠÙó‚¯æ‚è
 		String theater_name = req.getParameter("theater_name");
+        if(session.getAttribute("theater_name")!=null){
+            theater_name = (String)session.getAttribute("theater_name");
+            session.removeAttribute("theater_name");
+        }
         System.out.println("theater_name="+theater_name);
         //‹ó•¶š‚¾‚ÆÂ–Ø‰f‰æŠÙ
         if(theater_name==null||theater_name.equals("")){
@@ -78,12 +85,14 @@ public class DayServlet extends HttpServlet{
 			}
 			detailsMovie.add(dpf);
 		}
+        HamburgerDate hamburger = new HamburgerDate();
+        List<TheaterProfile> hamburgerlist = hamburger.getTheaterDetails();
 
 		//ƒpƒ‰ƒ[ƒ^‚ğJSP‚É“]‘—‚µ‚½‚¢
 		// req.setAttribute("daylist",daylist);
 		req.setAttribute("daylist",detailsMovie);
-		req.setAttribute("theater_name",theater_name);	
-		
+		req.setAttribute("theater_name",theater_name);
+        req.setAttribute("hamburger",hamburgerlist);
 		//“]‘—æ‚ÌJSP‚ğw’è
 		RequestDispatcher dis = req.getRequestDispatcher("/movietop");
 		

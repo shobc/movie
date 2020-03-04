@@ -29,6 +29,7 @@ ul.topnav {
     overflow: hidden;
     margin: 0;
     padding: 0;
+    height: 65px;
     list-style-type: none;
     background-color: #ffffff;
 }
@@ -42,8 +43,14 @@ ul.topnav li a {
     text-decoration: none;
     color: #575757;
 }
+
+/*メニューアイコンのホバー色*/
 ul.topnav li a:hover:not(.active) {
     background-color: #a9bce2;
+    height: 10px;
+    width: 50%;
+    padding: 0.4em 3em;
+    margin: 0 0 1em;
 }
 ul.topnav li a.active {
     background-color: #ffffff;
@@ -62,7 +69,9 @@ ul.topnav li.right {
     padding:0;
 }
 .active{
+    position: absolute;
     display: inline-block;
+    margin-left: 9%;
 }
 .passive{
     display: none;
@@ -73,19 +82,22 @@ ul.topnav li.right {
 }
 #right2{
     display: inline-block;
-    height: 40px;
+    height: 35px;
     margin-right: 10px;
-    margin-top: 9px;
+    margin-top: 5px;
 }
 #img{
-    width: 60px;
+    position: absolute;
+    z-index: 999;
+    width: 120px;
     height: 50px;
-    margin-left: 10px;
-    margin-top: 6px;
+    margin-left: 5px;
+    margin-top: 5px;
 }
 
+/*
 
-/*ハンバーガーアイコンdesign*/
+ハンバーガーアイコンdesign
 #nav-open span, #nav-open span:before, #nav-open span:after {
     position: absolute;
     background: #555;
@@ -93,10 +105,12 @@ ul.topnav li.right {
     content: '';
     cursor: pointer;
 }
+*/
 
 /*閉じる用の薄黒カバー*/
+/*
 #nav-close {
-    display: none;/*はじめは隠しておく*/
+    display: none;はじめは隠しておく
     position: fixed;
     top: 0;
     right: 0;
@@ -106,24 +120,28 @@ ul.topnav li.right {
     opacity: 0;
     transition: .3s ease-in-out;
 }
+*/
 
 /*中身*/
+/*
 #nav-content {
     overflow: auto;
     position: fixed;
     top: 0;
     right: 0;
     z-index: 9999;/*最前面*/
-    width: 90%;
+    /*width: 90%;
     max-width: 230px;/*アイコンの中身の幅*/
-    height: 100%;
+    /*height: 100%;
     background: #fff;
     transition: .3s ease-in-out;/*スライドインを滑らかにする*/
-    -webkit-transform: translateX(-105%);
+    /*-webkit-transform: translateX(-105%);
     transform: translateX(105%);/*左に隠しておく*/
-}
+/*}
+*/
 
 /*閉じるための表示*/
+/*
 #nav-input:checked ~ #nav-close {
     display: block;
     opacity: .5;
@@ -132,7 +150,7 @@ ul.topnav li.right {
 #nav-input:checked ~ #nav-content {
     -webkit-transform: translateX(0%);
     transform: translateX(0%);/*スライドイン*/
-    box-shadow: 6px 0 25px rgba(0,0,0,.15);
+    /*box-shadow: 6px 0 25px rgba(0,0,0,.15);
 }
 /*
 .nav-drawer{
@@ -144,17 +162,144 @@ top: 5%;
 */
 
 /*チェックボックス等は非表示に*/
+/*
 .nav-unshown {
     display:none;
 }
+*/
 /*アイコンのスペース*/
-#nav-open {
-    display: inline-block;
-    width: 40px;
-    height: 30px;
-    vertical-align: middle;
-}
+/*
 
+*/
+
+/*
 #detailTable{
     background-color: #ffffff;
 }
+*/
+*, *:before, *:after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+/*
+ol, ul {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+*/
+.cp_cont {
+    height: 65vh;
+}
+.cp_offcm01 {
+    position: absolute;
+    top: 0px;
+    right: 20px;
+    display: inline-block;
+}
+/* menu */
+.cp_offcm01 .cp_menu {
+    position: fixed;
+    top: 0;
+    right: -100vw;
+    width: 250px;
+    height: 100%;
+    cursor: pointer;
+    -webkit-transition: 0.53s transform;
+    transition: 0.53s transform;
+    -webkit-transition-timing-function: cubic-bezier(.38,.52,.23,.99);
+    transition-timing-function: cubic-bezier(.38,.52,.23,.99);
+    background-color: #607D8B;
+    opacity: 0.8;
+/*    display: inline-block;*/
+/*    margin-bottom: 2em;*/
+}
+.cp_offcm01 .cp_menu ul {
+    margin-top: 0;
+    margin: 0;
+    padding: 15px;
+}
+
+/*メニューアイコン　文字自体の設定*/
+.cp_offcm01 .cp_menu li {
+    list-style: none;
+    display: list-item;
+    height: 10px;
+    margin: 0px;
+}
+
+/*メニューアイコンの中身＠ボーダー*/
+.sen{
+    height: 30px;
+    border: 1px solid #fff;
+    border-left: 0px;
+    border-right: 0px;
+    border-top: 0px;
+}
+
+.cp_offcm01 .cp_menu li a {
+    display: inline;
+    margin-top: -10px;
+    margin: 10px;
+/*    height: 5px;*/
+    padding: 20 35 10 10;
+    text-decoration: none;
+    color: #000000;
+    margin: 10px;
+/*    max-width: 300px;*/
+/*    border-bottom: 1px solid #ffffff;*/
+}
+
+.cp_offcm01 #cp_toggle01 {
+    position: absolute;
+    display:none;
+    opacity: 0;
+}
+.cp_offcm01 #cp_toggle01:checked ~ .cp_menu {
+    -webkit-transform: translateX(-100vw);
+    transform: translateX(-100vw);
+}
+/* menu toggle */
+.cp_offcm01 #cp_toggle01 ~ label {
+    display: block;
+    padding: 0.5em;
+    cursor: pointer;
+    -webkit-transition: 0.5s transform;
+    transition: 0.5s transform;
+    -webkit-transition-timing-function: cubic-bezier(.61,-0.38,.37,1.27);
+    transition-timing-function: cubic-bezier(.61,-0.38,.37,1.27);
+    text-align: center;
+    color:aqua;
+}
+.cp_offcm01 #cp_toggle01:checked ~ label {
+    -webkit-transform: translateX(-250px);
+    transform: translateX(-250px);
+}
+.cp_offcm01 #cp_toggle01 ~ label::before {
+/*
+    font-family: 'FontAwesome 5 Free';
+    font-weight: 900;
+    content: '\f0c9';
+    font-size: 2em
+*/
+}
+.cp_offcm01 #cp_toggle01:checked ~ label::before {
+/*    content: '\f00d';*/
+}
+
+#input {
+    background-color: #607D8B;
+    height: 50px;
+    width: 200px;
+    margin:30px 9px 9px 9px;
+    
+    border-style: none;
+    font-size: 17px;
+    
+
+}
+
+

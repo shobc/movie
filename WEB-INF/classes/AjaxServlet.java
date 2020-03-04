@@ -14,5 +14,9 @@ public class AjaxServlet extends HttpServlet{
         date = date.replaceAll("-","/");
         HttpSession session = req.getSession();
         session.setAttribute("date",date);
+        
+        String theater_name = req.getParameter("theater_name");
+        HttpSession session2 = req.getSession();
+        session2.setAttribute("theater_name",theater_name);
     }
 }

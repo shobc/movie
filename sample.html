@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    </head>
+    <body>
+        <script type="text/javascript">
+            $(function(){
+                    $("#container").click(function(){
+                    $("#deital").slideToggle(400);  
+                });
+            });
+        </script>
+        
+        
+        <div class="contant">
+            <center>
+                <div>
+                    <div id="container">
+                        <div style="font-size: 20px;color: #434d5d;">
+                            <p class="titleDrop">${d.title}</p>
+                        </div>
+                    </div>
+                    <div id="deital">
+                        <div>
+                            <button class="detail" onclick="detailDisplay('${d.schedule_detail_id}')" id="${d.schedule_detail_id}">Ú×</button>
+                        </div>
+                        <div class="passive" id="A${d.schedule_detail_id}">
+                            <p style="display: inline; font-size: 110%; font-weight: bold;">‰f‰æÚ×°</p>
+                            <p style="width: 994px;">${d.detailed_explanation}</p>				
+                        </div>	
+                        <div>
+                            <c:forEach>
+                                <div class="zikan" id="B${d.schedule_detail_id}">
+                                    ${tt.theater}<br>${tt.start_time}~${tt.end_time}<a href="AccessSeatServlet?theater=${tt.theater}&schedule_detail_id=${tt.schedule_detail_id}">—\–ñ</a>                       	
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </div>
+                </div>
+            </center>
+        </div>
+        
+        
+    </body>
+</html>

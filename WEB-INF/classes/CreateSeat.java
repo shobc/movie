@@ -17,8 +17,9 @@ import java.util.Iterator;
 public class CreateSeat{
 	//メインメソッド
 	public static void main(String[] args) {
-		// String a =CreateSeat.seatingChart("1");
-		// System.out.println(a);
+		String s = "1";
+		String a =CreateSeat.seatingChart(s,s);
+		System.out.println(a);
 	}
 
 	//席の列をあらわす文字列
@@ -74,7 +75,7 @@ public class CreateSeat{
 		for(int i = 0 ; i < seatMax.length; i++) {
 			//座席列単位の表示データを作成する
 			char prefix = SEAT_ROW_CHAR[i];
-			stb.append(prefix).append("列 ");
+			stb.append(prefix).append("列\t");
 			layoutData.stream()
 			.filter(seat -> seat.getSeatNo().charAt(0) == prefix)
 			.forEach(seat -> stb.append(seat.print()));
@@ -91,42 +92,63 @@ public class CreateSeat{
 			//席の列をあらわす文字列を入れる変数の初期化
 			String seatRow = "";
 
-			for(int i = 0 ; i < seatMax.length; i++) {
-				//席の列をあらわす文字列を入れる
-				seatRow = String.valueOf(SEAT_ROW_CHAR[i]);
-				for(int j = 0; j < seatMax[i]; j++){
-					//もし、席の列をあらわす文字列seatRowと選択不可能な座席の列を表す文字列が一致しているなら
-					if(seatRow.equals(notSelectableStore.substring(0,1))){
-						//選択不可能な座席の数字データnotSelectableNumberの部分に”▲”を置き換える
-						stb.setCharAt(notSelectableNumber,'△');
-					}
-				}
-				//次の列に行くために４行分追加
-				notSelectableNumber = notSelectableNumber + seatMax[i] + 4 + seatMax[i] + seatMax[i];
-			}
+			// for(int i = 0 ; i < seatMax.length; i++) {
+			// 	//席の列をあらわす文字列を入れる
+			// 	seatRow = String.valueOf(SEAT_ROW_CHAR[i]);
+			// 	for(int j = 0; j < seatMax[i]; j++){
+			// 		//もし、席の列をあらわす文字列seatRowと選択不可能な座席の列を表す文字列が一致しているなら
+			// 		if(seatRow.equals(notSelectableStore.substring(0,1))){
+			// 			//選択不可能な座席の数字データnotSelectableNumberの部分に”▲”を置き換える
+			// 			stb.setCharAt(notSelectableNumber,'〇');
+			// 		}
+			// 	}
+			// 	//次の列に行くために４行分追加
+			// 	notSelectableNumber = notSelectableNumber + seatMax[i] + 4 + seatMax[i] + seatMax[i];
+			// }
 		}
 		//廊下の列を入れる
-		ArrayList cn = new ArrayList(); 
-		int row = 3;
-		int addRow = row * 3; 
-		for(int i = 0; i < seatMax.length; i++){
-			stb.insert(addRow,"　");
-			addRow = addRow + seatMax[i] * 3 + 5;
-			cn.add(i+1);
+		//getAisleメソッドのkayの中身を呼び出す
+		String aisle = TheaterFactory.getAisle(key);	
+		//配列の中身をカンマ区切りで分割
+		String[] aisles = aisle.split(",");	
+
+		//String配列をint配列に変える
+		int[] aisleInt = new int[aisles.length];		
+		for(int i=0; i<aisles.length; i++){
+			aisleInt[i] = Integer.parseInt(aisles[i]);
+			System.out.println("aisleInt[i]=="+aisleInt[i]);
+			ArrayList cn = new ArrayList(); 
+			int row = aisleInt[i];
+			int addRow = row * 3 + i; 
+			for(int j = 0; j < seatMax.length; j++){
+				stb.insert(addRow,"　");
+				addRow = addRow + seatMax[j] * 3 + 5 + i;
+				cn.add(j+1);
+			}
 		}
+
+		// ArrayList cn = new ArrayList(); 
+		// int row = 3;
+		// int addRow = row * 3; 
+		// for(int i = 0; i < seatMax.length; i++){
+		// 	stb.insert(addRow,"　");
+		// 	addRow = addRow + seatMax[i] * 3 + 5;
+		// 	cn.add(i+1);
+		// }
 
 		//座席データ表示
 		System.out.println(stb.toString());
 		//座席データの改行を＜ｐ＞に置換
 		seatData = (String)stb.toString().replaceAll("\n", "</p><p>").replaceAll("b", "<button>").replaceAll("d", "</button>");
 		ArrayList<String> al = new ArrayList<String>();
-		al.add("A");al.add("B");al.add("C");al.add("D");al.add("E");al.add("F");al.add("G");al.add("H");
+		al.add("A");al.add("B");al.add("C");al.add("D");al.add("E");al.add("F");al.add("G");al.add("H");al.add("I");al.add("J");al.add("K");al.add("L");al.add("M");al.add("N");al.add("O");al.add("P");al.add("Q");al.add("R");al.add("S");al.add("T");al.add("U");al.add("V");al.add("W");al.add("X");al.add("Y");al.add("Z");
 		
 		for(int i = 0; i < seatMax.length; i++){
 			al.get(i);
 			for(int j = 1; j <= seatMax[i]; j++){
 				seatData = seatData.replaceFirst("<button>", "<button id='"+al.get(i)+Integer.toString(j)+"' onclick='getId(this.id);'>");
 			}
+			seatData = seatData.replaceFirst(al.get(i)+"列", "<span class='seat_number_al'>"+al.get(i)+"</span>");
 		}
 		//座席データを戻す
 		return seatData;

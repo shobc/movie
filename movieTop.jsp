@@ -13,12 +13,15 @@
             <link href="slick-1.8.1/slick/slick-theme.css" rel="stylesheet" type="text/css" charset="UTF-8">
             <link href="slick-1.8.1/slick/slick.css" rel="stylesheet" type="text/css" charset="UTF-8">
             <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" charset="UTF-8"></script>
-            <script type="text/javascript" src="slick-1.8.1/slick/slick.min.js" charset="UTF-8"></script> 
+            <script type="text/javascript" src="slick-1.8.1/slick/slick.min.js" charset="UTF-8"></script>
             <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 
+        
             <script type="text/javascript">
                 var judge = /[0-9]{2}/;
                 window.onload = function aaa(){
+//                    $(".deitals").slideUp(0);
                     var date = new Date();
                     var dayOfWeek = date.getDay();  //ójì˙
                     var htmlstr = "<div class='movie'>";
@@ -43,7 +46,7 @@
                         //     console.log("aaa");
                         // }
                         // htmlstr += "<input type='button' class='' id='"+(date.getMonth()+1)+"/"+date.getDate()+"' onClick='document.location="+url+";' value='"+(date.getMonth()+1)+"/"+date.getDate()+"("+dayOfWeekStr+")'></input>";
-                        htmlstr += "<button style='font-weight: bold;font-size: 20px;' class='tabcontent' onclick=dateChange('"+day+"') id='"+(date.getFullYear())+"/"+(date.getMonth()+1)+"/0"+date.getDate()+"'>"+((date.getMonth()+1)+"/"+date.getDate()+"("+dayOfWeekStr+")")+"</button>";
+                        htmlstr += "<button style='font-weight: bold;font-size: 20px;' class='tabcontent' onclick=dateChange('"+day+"','${theater_name}') id='"+(date.getFullYear())+"/"+(date.getMonth()+1)+"/0"+date.getDate()+"' name=${theater_name}>"+((date.getMonth()+1)+"/"+date.getDate()+"("+dayOfWeekStr+")")+"</button>";
 
                         // htmlstr += '<input type="radio" name="hiduke" id="hidukeC" checked><label for="hidukeC" class="hi">'+(date.getMonth()+1)+"/"+date.getDate()+"("+dayOfWeekStr+")"+"</label>";
                             
@@ -97,22 +100,34 @@
         
             </script>
             <script>
-                function dateChange(day){
+                function titleSlide(){
+                    $(".deitals").slideUp(0);
+                }
+                function dateChange(day,theater_name){
                     console.log(day);
                     var id = day.replace(/\//g,'-');
+                    var theater_name = theater_name;
                     console.log(id);
+                    console.log(theater_name);
                         $.ajax({
                             type:"GET",
                             url:"AjaxServlet",
-                            data:{data:id}
+                            data:{data:id,theater_name:theater_name}
                         }).done(function(result){
-                            $("#aaa").load("dayservlet #detailTable");
+                            $("#detailTable").load("dayservlet #loadDetailTable");
+//                            ÉçÅ[ÉhèÍèä
+//                            titleSlide();
+//                            <c:forEach var="d" items="${daylist}">
+////                                slideTitle('${d.schedule_detail_id}')
+//                                var Id = "#deital"+'${d.schedule_detail_id}'; 
+//                                $(Id).slideUp(0);
+//                            </c:forEach>
                         })
                 }
 
                 function detailDisplay(id){
                         var aid = "#A"+id+", #B"+id;
-                        $(aid).toggleClass("active passive");
+                        $(aid).toggleClass("zikan passive");
                 }
                 // $(function(){
                 //     $(document).on("click",".tabcontent",function(){
@@ -139,24 +154,33 @@
     <body>
 
         <ul class="topnav">
-            <li><img src="theaterLogo_oizumi.png" id="img"></li>
-            <li><a class="active" href="">${theater_name}</a></li>
-            <li><a href="#contact"></a></li>
+            <li><img src="LegTicke.png" id="img"></li>
+            <li><a class="active">${theater_name}</a></li>
             <li class="right">
-                <img src="menu.png" id="right2">
-<!--                <div id="nav-drawer">-->
-                    <input id="nav-input" type="checkbox" class="nav-unshown">
-                    <label id="nav-open" for="nav-input"><span></span></label>
-                    <label class="nav-unshown" id="nav-close" for="nav-input"></label>
-                    <div id="nav-content">
-                        <p class="line"><a class="kugiri" href="">ê¬ñÿâfâÊäŸ</a></p>
-                        <p class="line"><a class="kugiri" href="">Ç¥ÇÌâfâÊäŸ</a></p>
-                        <p class="line"><a class="kugiri" href="">ÇµÇ®ÇæâfâÊäŸ</a></p>
+                <!--ÉnÉìÉoÅ[ÉKÅ[-->
+                <div class="cp_cont">
+                    <div class="cp_offcm01">
+                        <input type="checkbox" id="cp_toggle01">
+                        <label for="cp_toggle01"><img src="menu.png" id="right2"><span></span></label>
+                        <div class="cp_menu">
+                            <ul>
+                                <c:forEach var="bb" items="${hamburger}">
+                                    <form action="dayservlet" method="POST">
+                                        <li><input id="input" type="submit" value="${bb.name}" name="theater_name"></li>
+                                        
+                                    </form>
+                                    <div class="sen"></div>
+                                </c:forEach>
+                            </ul>
+                        </div>
                     </div>
+                </div>
             </li>
         </ul>
 
-        <center>
+<br><br>
+        
+        
 
             <!--
             <form action="dayservlet" method="POST">
@@ -172,17 +196,19 @@
             </form>
 -->
     
-            <br><br>
-            
-            <div id="movieArea"></div>
+
+<!--            <div id="movieArea"></div>-->
+<!--
             <div class="tabcontent2" id="tabcontent1"><br><br>
                 <div class="movieS">
                     <div id="mTitle">
-                        ${result}
+-->
+<!--                        ${result}-->
                         <!-- <tbody> -->
+<!--
                         <br>
                         <div id="aaa">
-                        <table border="1" width="1000" id="detailTable" style="border: none;">
+                        <table border="0" width="1000" id="detailTable">
                             <c:forEach var="d" items="${daylist}">
                                 <tr>
                                     <th colspan="5" style="font-size: 20px;color: #434d5d;">${d.title}</th>
@@ -190,12 +216,15 @@
                                 <tr>
                                     <td colspan="5">
                                         <button class="detail" onclick="detailDisplay('${d.schedule_detail_id}')" id="${d.schedule_detail_id}">è⁄ç◊</button>
+-->
                                         <!-- <input type="submit" name="detail" id="${d.schedule_detail_id}" value="è⁄ç◊"> -->
+<!--
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="passive" id="A${d.schedule_detail_id}">
-                                            <p style="display: inline; font-size: 110%; font-weight: bold;">âfâÊè⁄ç◊</p><p style="width: 994px;">${d.detailed_explanation}</p>
+                                            <p style="display: inline; font-size: 110%; font-weight: bold;">âfâÊè⁄ç◊</p>
+                                        <p style="width: 994px;">${d.detailed_explanation}</p>
                                     </td>
                                     <c:forEach var="tt" items="${d.day}">
                                         <td class="active" id="B${d.schedule_detail_id}">
@@ -208,11 +237,197 @@
                         </div>
                         <br>
                         <br>
-                        <!-- </tbody> -->
+                         </tbody>
                     </div>
+                </div>
+-->
+<!--
+            </div>
+        </center>
+-->
+        
+<!--
+    <center>
+        <div id="movieArea"></div>
+        <div class="tabcontent2" id="tabcontent1"><br><br>
+            <div class="movieS">
+                <div id="mTitle">
+                    ${result}
+                     <tbody> 
+                    <br>
+                    <div id="aaa">
+                        <table border="0" width="1000" id="detailTable">
+                            <c:forEach var="d" items="${daylist}">
+                                <div class="header_right">
+                                    <ul class="menu_list">
+                                        <li class="nav_item">
+                                            <tr><th class="js-dropdown" colspan="5" style="font-size: 20px;color: #434d5d;">${d.title}</th></tr>
+                                            <div class="panel js-dropdown-menu">
+                                                <ul class="panel-inner">
+                                                    <li class="panel_item">
+                                                        <tr>
+                                                        <td colspan="5">
+                                                        <button class="detail" onclick="detailDisplay('${d.schedule_detail_id}')" id="${d.schedule_detail_id}">è⁄ç◊</button>
+                                                        </td>
+                                                        </tr>
+                                                    </li>
+-->
+<!--
+                                                    <li class="panel_item">
+                                                        <p style="width: 994px;">${d.detailed_explanation}</p>
+                                                    </li>
+-->
+<!--
+                                                    <li class="panel_item">
+                                                        <td class="passive" id="A${d.schedule_detail_id}">
+                                                                <p style="display: inline; font-size: 110%; font-weight: bold;">âfâÊè⁄ç◊</p>
+                                                                <p style="width: 994px;">${d.detailed_explanation}</p>
+                                                        </td>
+                                                    </li>
+                                                    <c:forEach var="tt" items="${d.day}">
+                                                        <li class="panel_item">
+                                                                <td class="active" id="B${d.schedule_detail_id}">
+                                                                    ${tt.theater}<br>${tt.start_time}~${tt.end_time}
+                                                                    <a href="AccessSeatServlet?theater=${tt.theater}&schedule_detail_id=${tt.schedule_detail_id}">ó\ñÒ</a>
+                                                                </td>
+                                                        </li>
+                                                    </c:forEach>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </c:forEach>
+                        </table>
+                    </div><br><br>
+-->
+                    <!-- </tbody> -->
+<!--
+                </div>
+            </div>
+        </div>
+    </center>
+-->
+        
+    <div class="contant">   
+        <center>
+               
+            <div id="movieArea"></div>
+            <div class="movieS">
+                <div id="mTitle">
+                        <!-- ${result} -->
+                    <div id="detailTable"> 
+                            <div id="loadDetailTable">
+                                <c:forEach var="d" items="${daylist}">
+<!--                                    ñ‚ëËì_ÇPÅiëSÇƒÇ™äJÇ©ÇÍÇƒÇµÇ‹Ç§Åj-->
+                                    <div id="container" onclick="slideTitle('${d.schedule_detail_id}')" style="background-color: white; height: 90px; margin-left: 180px; margin-right: 180px;">
+                                        <div style="font-size: 20px; color: #434d5d;">
+                                            <p class="titleDrop"><br>${d.title}<img src="reverseTriangle.png" style="height: 10px; width: 15px; right: 30px;"></p>
+                                            <!-- <p><img src="reverseTriangle.png"></p> -->
+                                        </div>
+
+                                    </div>
+                                    <span class="profile">
+                                        <!-- <div id="deital deital{${d.schedule_detail_id}}"> -->
+                                        <div class="deitals" id="deital${d.schedule_detail_id}" style="background-color: white; height: 235px; margin-left: 180px; margin-right: 180px;">
+                                            <div>
+                                                <button class="detail" onclick="detailDisplay('${d.schedule_detail_id}')" id="${d.schedule_detail_id}" style="border-color: #a8a8a8; background-color: #ffffff; height: 45px; width: 120px; font-size: 18px; float: left; margin-top: 10px; margin-left: 20px;">è⁄ç◊</button>
+                                            </div>
+                                            <div class="passive" id="A${d.schedule_detail_id}">
+                                                <p style="display: inline; font-size: 110%; font-weight: bold;">âfâÊè⁄ç◊∞</p>
+                                                <p style="width: 700px;">${d.detailed_explanation}</p>				
+                                            </div>	
+                                            <div class="detail_time">
+                                                <c:forEach var="tt" items="${d.day}">
+                                                    <div class="zikan" id="B${d.schedule_detail_id}" style="margin-top: 30px;">
+                                                        ${tt.theater}<br>${tt.start_time}~${tt.end_time}<a href="AccessSeatServlet?theater=${tt.theater}&schedule_detail_id=${tt.schedule_detail_id}">ó\ñÒ</a>                       	
+                                                    </div>
+                                                </c:forEach>
+                                            </div>
+                                        </div>
+                                    </span>
+                                </c:forEach>
+                            </div>
+                         </div> 
                 </div>
             </div>
         </center>
+    </div>
+    
+        <script type="text/javascript">
+            function slideTitle(id){
+//                $(".deitals").slideUp(0);
+                var Id = "#deital"+id; 
+                console.log(Id);
+                $(Id).slideToggle(400);
+                console.log("aaaaaaaaaaaaaaaaaaaaaaaaa");
+            }
+            // window.onload = function(){
+            //     $(".deitals").slideUp(0);
+            // }
+        </script>
+        <style>
+            .titleDrop{
+                margin-top: 70px;
+            }
+            .detail_time{
+                display: flex;
+                justify-content:flex-start;
+                margin-left: 20px;
+            }
+        </style>
+
+        <!-- <style>
+
+            .profile{
+                display: inline;
+                position: absolute;
+                right: 55%;
+                z-index: 99;
+                left: 20%;
+            }
+
+            .friend{
+                text-decoration: underline;
+            }
+
+            #container {
+/*                display: flex;*/
+                justify-content: space-between;
+                align-items: center;
+                height: 60px;
+                border: 1px solid black;
+                border-left: 0px;
+                border-right: 0px;
+                margin-top: 5%;
+                margin-bottom: 3%;
+                z-index: 999;
+            }
+
+            .passive{
+                display: none;
+            }
+
+            .up .down{
+                width: 50px;
+                height: 50px;
+            }
+
+            .zikan{
+                display: block;
+            }
+
+            /* ÉhÉçÉbÉvÉ_ÉEÉìÅ§Å¢É{É^Éì */
+/*
+            .triangle{
+                width: 20px;
+                height: 20px;
+                position: relative;
+                left: 0;
+                top: 5px;
+            }
+*/
+        </style> -->
 
     </body>
 </html>
